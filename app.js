@@ -119,14 +119,19 @@ function removeTodoFromStorage(textContent){ // icerikten anlayacagız hangi ind
 }
 function deleteAllTodos(){
      if(confirm("Tüm To Do'ları silmek istediğinizden emin misiniz?")){
-         //UI remove
-       //todoList.innerHTML = ""; //yavas
-       while(todoList.firstElementChild != null){
-           todoList.firstElementChild.remove();
-       }
-      //storage Remove
-      localStorage.removeItem("todos");
-      showAlert("success","Tüm Todo lar Temizlendi");
+         if(todoList.firstElementChild === null){ // to do list yok
+            showAlert("warning","To do Bulunmamaktadır");
+         }else{
+            //UI remove
+            //todoList.innerHTML = ""; //yavas
+            while(todoList.firstElementChild != null){
+            todoList.firstElementChild.remove();
+            }
+            //storage Remove
+            localStorage.removeItem("todos");
+            showAlert("success","Tüm Todo lar Temizlendi");
+         }
+         
      }
     
 }
